@@ -1,0 +1,48 @@
+name: calculadora_agrocarbon
+description: Calculadora de carbono orgânico do solo com UI gamificada
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_mobx: ^2.2.1+1
+  mobx: ^2.3.3+2
+
+  # Routing
+  flutter_modular: ^6.3.4
+
+  # Fonts
+  google_fonts: ^6.2.1
+
+  # Animations
+  animations: ^2.0.11
+  confetti: ^0.7.0
+
+  # Icons (Material Symbols já incluído no Flutter)
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # Code Generation
+  build_runner: ^2.4.12
+  mobx_codegen: ^2.6.1
+
+flutter:
+  uses-material-design: true
+
+  # Adicione fontes customizadas se necessário
+  # fonts:
+  #   - family: Outfit
+  #     fonts:
+  #       - asset: fonts/Outfit-Regular.ttf
+  #       - asset: fonts/Outfit-Bold.ttf
+  #         weight: 700
