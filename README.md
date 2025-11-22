@@ -1,5 +1,9 @@
 # 🌱 Calculadora AgroCarbon
 
+<p align="center">
+  <img src="assets/icons/agrocarbon_banner.png" width="260">
+</p>
+
 A **Calculadora AgroCarbon** é uma ferramenta open-source desenvolvida em Flutter para quantificar o **Estoque de Carbono no Solo (ESTC)** em áreas agrícolas. O aplicativo converte dados laboratoriais e de campo em informações estratégicas de forma simples, rápida e padronizada — auxiliando produtores, consultores, pesquisadores e agentes do mercado de carbono.
 
 ---
@@ -14,9 +18,6 @@ A **Calculadora AgroCarbon** é uma ferramenta open-source desenvolvida em Flutt
 6. [Estrutura do Projeto](#estrutura-do-projeto)
 7. [Screenshots](#screenshots)
 8. [Equipe / Grupo AGROcarbon](#equipe--grupo-agrocarbon)
-9. [Contribuição](#contribuição)
-10. [Licença](#licença)
-11. [Anexos e Documentos](#anexos-e-documentos)
 
 ---
 
@@ -164,14 +165,14 @@ lib/
 
 ## 📸 Screenshots
 
-Abaixo, uma visualização organizada das principais telas do aplicativo:
-
-| Tela                             | Screenshot                                            |
-| -------------------------------- | ----------------------------------------------------- |
-| **Estoque de Carbono**           | ![Carbon](assets/screenshots/screenshot_carbon.jpg)   |
-| **Matéria Orgânica (MOS)**       | ![MOS](assets/screenshots/screenshot_mos_result.jpg)  |
-| **Densidade do Solo**            | ![Density](assets/screenshots/screenshot_density.jpg) |
-| **Carbono Orgânico Total (COT)** | ![COT](assets/screenshots/screenshot_cot.jpg)         |
+<table>
+  <tr>
+    <td><img src="assets/screenshots/screenshot_carbon.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_mos_result.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_density.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_cot.jpg" width="170"></td>
+  </tr>
+</table>
 
 ---
 
@@ -193,4 +194,4 @@ Abaixo, uma visualização organizada das principais telas do aplicativo:
 
 ---
 
-Desenvolvido com 💚 por Rodrigo Salgado — para um futuro mais sustentável.
+Desenvolvido por **Rodrigo Salgado** — para um futuro mais sustentável.
