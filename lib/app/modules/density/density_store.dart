@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'dart:math' as math;
 import 'package:mobx/mobx.dart';
 
 part 'density_store.g.dart';
@@ -19,6 +18,9 @@ abstract class DensityStoreBase with Store {
   @observable
   double? densityResult;
 
+  @observable
+  double? volumeResult;
+
   @computed
   bool get canCalculate =>
       double.tryParse(radiusInput) != null &&
@@ -31,14 +33,24 @@ abstract class DensityStoreBase with Store {
     final h = double.tryParse(heightInput);
     final m = double.tryParse(massInput);
 
-    if (r != null && h != null && m != null && r > 0 && h > 0) {
-      // V = Π * R² * h
-      final double volume = pi * (r * r) * h;
-
-      // Densidade = M / V
-      densityResult = m / volume;
+    if (r != null && h != null && m != null) {
+      final volume = math.pi * math.pow(r, 2) * h;
+      final density = m / volume;
+      volumeResult = volume;
+      densityResult = density;
     } else {
+      volumeResult = null;
       densityResult = null;
     }
+  }
+
+  // --- NOVA AÇÃO CLEAR ---
+  @action
+  void clear() {
+    radiusInput = '';
+    heightInput = '';
+    massInput = '';
+    densityResult = null;
+    volumeResult = null;
   }
 }

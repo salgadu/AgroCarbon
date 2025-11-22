@@ -12,71 +12,107 @@ mixin _$MosStore on MosStoreBase, Store {
   Computed<bool>? _$canCalculateComputed;
 
   @override
-  bool get canCalculate => (_$canCalculateComputed ??= Computed<bool>(
-    () => super.canCalculate,
-    name: 'MosStoreBase.canCalculate',
-  )).value;
-
-  late final _$cotInputAtom = Atom(
-    name: 'MosStoreBase.cotInput',
-    context: context,
-  );
+  bool get canCalculate =>
+      (_$canCalculateComputed ??= Computed<bool>(() => super.canCalculate,
+              name: 'MosStoreBase.canCalculate'))
+          .value;
+  Computed<bool>? _$isCotModeComputed;
 
   @override
-  String get cotInput {
-    _$cotInputAtom.reportRead();
-    return super.cotInput;
+  bool get isCotMode => (_$isCotModeComputed ??=
+          Computed<bool>(() => super.isCotMode, name: 'MosStoreBase.isCotMode'))
+      .value;
+
+  late final _$inputValueAtom =
+      Atom(name: 'MosStoreBase.inputValue', context: context);
+
+  @override
+  String get inputValue {
+    _$inputValueAtom.reportRead();
+    return super.inputValue;
   }
 
   @override
-  set cotInput(String value) {
-    _$cotInputAtom.reportWrite(value, super.cotInput, () {
-      super.cotInput = value;
+  set inputValue(String value) {
+    _$inputValueAtom.reportWrite(value, super.inputValue, () {
+      super.inputValue = value;
     });
   }
 
-  late final _$mosResultAtom = Atom(
-    name: 'MosStoreBase.mosResult',
-    context: context,
-  );
+  late final _$resultValueAtom =
+      Atom(name: 'MosStoreBase.resultValue', context: context);
 
   @override
-  double? get mosResult {
-    _$mosResultAtom.reportRead();
-    return super.mosResult;
+  double? get resultValue {
+    _$resultValueAtom.reportRead();
+    return super.resultValue;
   }
 
   @override
-  set mosResult(double? value) {
-    _$mosResultAtom.reportWrite(value, super.mosResult, () {
-      super.mosResult = value;
+  set resultValue(double? value) {
+    _$resultValueAtom.reportWrite(value, super.resultValue, () {
+      super.resultValue = value;
     });
   }
 
-  late final _$MosStoreBaseActionController = ActionController(
-    name: 'MosStoreBase',
-    context: context,
-  );
+  late final _$calculationTypeAtom =
+      Atom(name: 'MosStoreBase.calculationType', context: context);
 
   @override
-  void setCot(String value) {
+  MosCalculationType get calculationType {
+    _$calculationTypeAtom.reportRead();
+    return super.calculationType;
+  }
+
+  @override
+  set calculationType(MosCalculationType value) {
+    _$calculationTypeAtom.reportWrite(value, super.calculationType, () {
+      super.calculationType = value;
+    });
+  }
+
+  late final _$MosStoreBaseActionController =
+      ActionController(name: 'MosStoreBase', context: context);
+
+  @override
+  void setInputValue(String value) {
     final _$actionInfo = _$MosStoreBaseActionController.startAction(
-      name: 'MosStoreBase.setCot',
-    );
+        name: 'MosStoreBase.setInputValue');
     try {
-      return super.setCot(value);
+      return super.setInputValue(value);
     } finally {
       _$MosStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void calculateMos() {
+  void setCalculationType(MosCalculationType type) {
     final _$actionInfo = _$MosStoreBaseActionController.startAction(
-      name: 'MosStoreBase.calculateMos',
-    );
+        name: 'MosStoreBase.setCalculationType');
     try {
-      return super.calculateMos();
+      return super.setCalculationType(type);
+    } finally {
+      _$MosStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void calculate() {
+    final _$actionInfo = _$MosStoreBaseActionController.startAction(
+        name: 'MosStoreBase.calculate');
+    try {
+      return super.calculate();
+    } finally {
+      _$MosStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clear() {
+    final _$actionInfo =
+        _$MosStoreBaseActionController.startAction(name: 'MosStoreBase.clear');
+    try {
+      return super.clear();
     } finally {
       _$MosStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -85,9 +121,11 @@ mixin _$MosStore on MosStoreBase, Store {
   @override
   String toString() {
     return '''
-cotInput: ${cotInput},
-mosResult: ${mosResult},
-canCalculate: ${canCalculate}
+inputValue: ${inputValue},
+resultValue: ${resultValue},
+calculationType: ${calculationType},
+canCalculate: ${canCalculate},
+isCotMode: ${isCotMode}
     ''';
   }
 }

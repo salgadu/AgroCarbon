@@ -1,4 +1,7 @@
+import 'package:calculadora_agrocarbon/app/core/theme/theme_store.dart';
+import 'package:calculadora_agrocarbon/app/modules/mos/mos_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ThemeStore themeStore = Modular.get<ThemeStore>();
+  final MosStore mosStore = Modular.get<MosStore>();
+
   int _currentIndex = 0;
 
   void _onBottomNavTapped(int index) {
@@ -30,32 +36,103 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculadora AgroCarbon'),
-        centerTitle: true,
-      ),
-      body: const RouterOutlet(),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: _onBottomNavTapped,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.grass_outlined),
-            activeIcon: Icon(Icons.grass),
-            label: 'MOS',
+        // 1. Título alinhado à esquerda
+        centerTitle: false,
+
+        // 2. "AGRO" em verde usando Text.rich
+        title: Text.rich(
+          TextSpan(
+            text: 'Calculadora ',
+            // Herda o estilo padrão do AppBar
+            style: Theme.of(context).appBarTheme.titleTextStyle ??
+                const TextStyle(fontSize: 20),
+            children: [
+              TextSpan(
+                text: 'AGRO',
+                style: TextStyle(
+                  color: colorScheme.primary, // Cor verde solicitada
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const TextSpan(
+                text: 'carbon',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.layers_outlined),
-            activeIcon: Icon(Icons.layers),
-            label: 'Densidade',
+        ),
+        actions: [
+          Observer(
+            builder: (_) {
+              return IconButton(
+                onPressed: themeStore.toggleTheme,
+                icon: Icon(
+                  themeStore.isDark ? Icons.light_mode : Icons.dark_mode,
+                ),
+                tooltip: 'Alterar Tema',
+              );
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.eco_outlined),
-            activeIcon: Icon(Icons.eco),
-            label: 'Carbono',
+
+          // 3. Menu de Opções (Três pontinhos)
+          PopupMenuButton<String>(
+            tooltip: 'Opções',
+            onSelected: (value) {
+              if (value == 'about') {
+                // Navega para a página Sobre
+                // Certifique-se de registrar a rota '/about' no seu módulo
+                Modular.to.pushNamed('/about');
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+              const PopupMenuItem<String>(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                value: 'about',
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outline, color: Colors.grey),
+                    SizedBox(width: 8),
+                    Text('Sobre'),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
+      ),
+      body: const RouterOutlet(),
+      bottomNavigationBar: Observer(
+        builder: (_) {
+          final isCot = mosStore.isCotMode;
+          final label0 = isCot ? 'COT' : 'MOS';
+          final icon0 = isCot ? Icons.science_outlined : Icons.eco_outlined;
+          final activeIcon0 = isCot ? Icons.science : Icons.eco;
+
+          return BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: _onBottomNavTapped,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(icon0),
+                activeIcon: Icon(activeIcon0),
+                label: label0,
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.layers_outlined),
+                activeIcon: Icon(Icons.layers),
+                label: 'Densidade',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.dns_outlined),
+                activeIcon: Icon(Icons.dns),
+                label: 'Carbono',
+              ),
+            ],
+          );
+        },
       ),
     );
   }

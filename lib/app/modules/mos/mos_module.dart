@@ -1,11 +1,10 @@
 import 'package:calculadora_agrocarbon/app/modules/mos/mos_page.dart';
-import 'package:calculadora_agrocarbon/app/modules/mos/mos_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class MosModule extends Module {
   @override
   void binds(i) {
-    i.addLazySingleton(MosStore.new);
+    // i.addLazySingleton(MosStore.new); --- IGNORE ---
   }
 
   @override

@@ -12,15 +12,13 @@ mixin _$DensityStore on DensityStoreBase, Store {
   Computed<bool>? _$canCalculateComputed;
 
   @override
-  bool get canCalculate => (_$canCalculateComputed ??= Computed<bool>(
-    () => super.canCalculate,
-    name: 'DensityStoreBase.canCalculate',
-  )).value;
+  bool get canCalculate =>
+      (_$canCalculateComputed ??= Computed<bool>(() => super.canCalculate,
+              name: 'DensityStoreBase.canCalculate'))
+          .value;
 
-  late final _$radiusInputAtom = Atom(
-    name: 'DensityStoreBase.radiusInput',
-    context: context,
-  );
+  late final _$radiusInputAtom =
+      Atom(name: 'DensityStoreBase.radiusInput', context: context);
 
   @override
   String get radiusInput {
@@ -35,10 +33,8 @@ mixin _$DensityStore on DensityStoreBase, Store {
     });
   }
 
-  late final _$heightInputAtom = Atom(
-    name: 'DensityStoreBase.heightInput',
-    context: context,
-  );
+  late final _$heightInputAtom =
+      Atom(name: 'DensityStoreBase.heightInput', context: context);
 
   @override
   String get heightInput {
@@ -53,10 +49,8 @@ mixin _$DensityStore on DensityStoreBase, Store {
     });
   }
 
-  late final _$massInputAtom = Atom(
-    name: 'DensityStoreBase.massInput',
-    context: context,
-  );
+  late final _$massInputAtom =
+      Atom(name: 'DensityStoreBase.massInput', context: context);
 
   @override
   String get massInput {
@@ -71,10 +65,8 @@ mixin _$DensityStore on DensityStoreBase, Store {
     });
   }
 
-  late final _$densityResultAtom = Atom(
-    name: 'DensityStoreBase.densityResult',
-    context: context,
-  );
+  late final _$densityResultAtom =
+      Atom(name: 'DensityStoreBase.densityResult', context: context);
 
   @override
   double? get densityResult {
@@ -89,18 +81,42 @@ mixin _$DensityStore on DensityStoreBase, Store {
     });
   }
 
-  late final _$DensityStoreBaseActionController = ActionController(
-    name: 'DensityStoreBase',
-    context: context,
-  );
+  late final _$volumeResultAtom =
+      Atom(name: 'DensityStoreBase.volumeResult', context: context);
+
+  @override
+  double? get volumeResult {
+    _$volumeResultAtom.reportRead();
+    return super.volumeResult;
+  }
+
+  @override
+  set volumeResult(double? value) {
+    _$volumeResultAtom.reportWrite(value, super.volumeResult, () {
+      super.volumeResult = value;
+    });
+  }
+
+  late final _$DensityStoreBaseActionController =
+      ActionController(name: 'DensityStoreBase', context: context);
 
   @override
   void calculateDensity() {
     final _$actionInfo = _$DensityStoreBaseActionController.startAction(
-      name: 'DensityStoreBase.calculateDensity',
-    );
+        name: 'DensityStoreBase.calculateDensity');
     try {
       return super.calculateDensity();
+    } finally {
+      _$DensityStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clear() {
+    final _$actionInfo = _$DensityStoreBaseActionController.startAction(
+        name: 'DensityStoreBase.clear');
+    try {
+      return super.clear();
     } finally {
       _$DensityStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -113,6 +129,7 @@ radiusInput: ${radiusInput},
 heightInput: ${heightInput},
 massInput: ${massInput},
 densityResult: ${densityResult},
+volumeResult: ${volumeResult},
 canCalculate: ${canCalculate}
     ''';
   }

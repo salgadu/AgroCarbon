@@ -1,4 +1,4 @@
-import 'package:animations/animations.dart';
+import 'package:calculadora_agrocarbon/app/core/components/shared_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,99 +19,127 @@ class _DensityPageState extends State<DensityPage> {
   final _heightController = TextEditingController();
   final _massController = TextEditingController();
 
+  final Color _themeColor = Colors.amber.shade800;
+
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text('Densidade do Solo',
-              style: textTheme.headlineSmall?.copyWith(
-                color: colorScheme.primary,
+      child: Observer(
+        builder: (_) {
+          final hasResult = store.densityResult != null;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              StyledHeader(
+                title: 'Densidade do Solo',
+                formula: 'V = π × R² × h  |  Ds = M / V',
+                icon: Icons.layers,
+                themeColor: _themeColor,
               ),
-              textAlign: TextAlign.center),
-          const SizedBox(height: 8),
-          Text('Fórmula: V = π × R² × h | Densidade = M / V',
-              style: textTheme.titleMedium, textAlign: TextAlign.center),
-          const SizedBox(height: 24),
-          TextField(
-            controller: _radiusController,
-            onChanged: (value) => store.radiusInput = value,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(
-              labelText: 'Raio (R) em cm',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.circle_outlined),
-            ),
-          ),
-          const SizedBox(height: 16),
-          TextField(
-            controller: _heightController,
-            onChanged: (value) => store.heightInput = value,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(
-              labelText: 'Altura (h) em cm',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.height),
-            ),
-          ),
-          const SizedBox(height: 16),
-          TextField(
-            controller: _massController,
-            onChanged: (value) => store.massInput = value,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: const InputDecoration(
-              labelText: 'Massa seca do solo (M) em g',
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.scale),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Observer(
-            builder: (_) {
-              return FilledButton.tonal(
-                onPressed: store.canCalculate ? store.calculateDensity : null,
-                child: const Text('CALCULAR DENSIDADE'),
-              );
-            },
-          ),
-          const SizedBox(height: 24),
-          Observer(
-            builder: (_) {
-              return PageTransitionSwitcher(
-                transitionBuilder:
-                    (child, primaryAnimation, secondaryAnimation) {
-                  return SharedAxisTransition(
-                    animation: primaryAnimation,
-                    secondaryAnimation: secondaryAnimation,
-                    transitionType: SharedAxisTransitionType.vertical,
-                    child: child,
-                  );
+              const SizedBox(height: 32),
+
+              // Inputs (agora bloqueiam quando tem resultado)
+              TextField(
+                controller: _radiusController,
+                onChanged: (value) => store.radiusInput = value,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                textInputAction: TextInputAction.next,
+                readOnly: hasResult,
+                decoration: InputDecoration(
+                  labelText: 'Raio do anel (R)',
+                  suffixText: 'cm',
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.circle_outlined),
+                  filled: hasResult,
+                  fillColor: Colors.grey.withValues(alpha: 0.1),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _heightController,
+                onChanged: (value) => store.heightInput = value,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                textInputAction: TextInputAction.next,
+                readOnly: hasResult,
+                decoration: InputDecoration(
+                  labelText: 'Altura do anel (h)',
+                  suffixText: 'cm',
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.height),
+                  filled: hasResult,
+                  fillColor: Colors.grey.withValues(alpha: 0.1),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _massController,
+                onChanged: (value) => store.massInput = value,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                textInputAction: TextInputAction.done,
+                readOnly: hasResult,
+                onSubmitted: (_) {
+                  if (store.canCalculate && !hasResult) {
+                    FocusScope.of(context).unfocus();
+                    store.calculateDensity();
+                  }
                 },
-                child: (store.densityResult != null)
-                    ? Card(
-                        elevation: 0,
-                        color: colorScheme.primaryContainer,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            'Densidade = ${store.densityResult!.toStringAsFixed(3)} g/cm³',
-                            style: textTheme.titleLarge?.copyWith(
-                              color: colorScheme.onPrimaryContainer,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      )
-                    : const SizedBox(key: ValueKey('placeholder')),
-              );
-            },
-          ),
-        ],
+                decoration: InputDecoration(
+                  labelText: 'Massa seca do solo (M)',
+                  suffixText: 'g',
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.scale_outlined),
+                  filled: hasResult,
+                  fillColor: Colors.grey.withValues(alpha: 0.1),
+                ),
+              ),
+              const SizedBox(height: 24),
+
+              // Botão Transformável
+              CalculateButton(
+                onPressed: hasResult
+                    ? () {
+                        store.clear();
+                        _radiusController.clear();
+                        _heightController.clear();
+                        _massController.clear();
+                      }
+                    : store.calculateDensity,
+                isEnabled: hasResult || store.canCalculate,
+                label: hasResult ? 'LIMPAR CÁLCULO' : 'CALCULAR DENSIDADE',
+                color: hasResult ? Colors.red.shade400 : _themeColor,
+                icon: hasResult ? Icons.refresh : Icons.calculate,
+              ),
+              const SizedBox(height: 32),
+
+              if (hasResult)
+                Column(
+                  children: [
+                    VolumeResultCard(
+                      value: store.volumeResult?.toStringAsFixed(2),
+                      themeColor: _themeColor,
+                    ),
+                    GradientResultCard(
+                      value: store.densityResult?.toStringAsFixed(3),
+                      unit: 'g/cm³',
+                      label: 'Densidade',
+                      colorStart: Colors.amber.shade700,
+                      colorEnd: Colors.amber.shade500,
+                    ),
+                    const TipCard(
+                      text:
+                          'A densidade do solo geralmente varia entre 1,0 e 1,6 g/cm³ para solos agrícolas.',
+                      color: Colors.green,
+                    ),
+                  ],
+                ),
+            ],
+          );
+        },
       ),
     );
   }

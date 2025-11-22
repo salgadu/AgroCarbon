@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#FFFFFF" # Fundo Branco
+
+  # Sua logo (certifique-se que ela NÃO é branca, senão não aparecerá)
+  image: assets/icons/agrocarbon_logo_reduced.png
+
+  android_12:
+    color: "#FFFFFF" # Fundo Branco também no Android 12+
+    image: assets/icons/agrocarbon_logo_reduced.png
+
+  android: true
+  ios: true
+  fullscreen: true

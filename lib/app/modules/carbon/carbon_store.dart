@@ -15,7 +15,7 @@ abstract class CarbonStoreBase with Store {
   String eInput = '';
 
   @observable
-  double? estcResult;
+  double? resultKgM2; // Renomeado de resultMgHa para refletir a nova unidade
 
   @computed
   bool get canCalculate =>
@@ -30,9 +30,18 @@ abstract class CarbonStoreBase with Store {
     final e = double.tryParse(eInput);
 
     if (co != null && ds != null && e != null) {
-      estcResult = (co * ds * e) / 10;
+      // Fórmula atualizada: (CO × Ds × e) / 10
+      resultKgM2 = (co * ds * e) / 10;
     } else {
-      estcResult = null;
+      resultKgM2 = null;
     }
+  }
+
+  @action
+  void clear() {
+    coInput = '';
+    dsInput = '';
+    eInput = '';
+    resultKgM2 = null;
   }
 }

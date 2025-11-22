@@ -12,15 +12,13 @@ mixin _$CarbonStore on CarbonStoreBase, Store {
   Computed<bool>? _$canCalculateComputed;
 
   @override
-  bool get canCalculate => (_$canCalculateComputed ??= Computed<bool>(
-    () => super.canCalculate,
-    name: 'CarbonStoreBase.canCalculate',
-  )).value;
+  bool get canCalculate =>
+      (_$canCalculateComputed ??= Computed<bool>(() => super.canCalculate,
+              name: 'CarbonStoreBase.canCalculate'))
+          .value;
 
-  late final _$coInputAtom = Atom(
-    name: 'CarbonStoreBase.coInput',
-    context: context,
-  );
+  late final _$coInputAtom =
+      Atom(name: 'CarbonStoreBase.coInput', context: context);
 
   @override
   String get coInput {
@@ -35,10 +33,8 @@ mixin _$CarbonStore on CarbonStoreBase, Store {
     });
   }
 
-  late final _$dsInputAtom = Atom(
-    name: 'CarbonStoreBase.dsInput',
-    context: context,
-  );
+  late final _$dsInputAtom =
+      Atom(name: 'CarbonStoreBase.dsInput', context: context);
 
   @override
   String get dsInput {
@@ -53,10 +49,8 @@ mixin _$CarbonStore on CarbonStoreBase, Store {
     });
   }
 
-  late final _$eInputAtom = Atom(
-    name: 'CarbonStoreBase.eInput',
-    context: context,
-  );
+  late final _$eInputAtom =
+      Atom(name: 'CarbonStoreBase.eInput', context: context);
 
   @override
   String get eInput {
@@ -71,36 +65,42 @@ mixin _$CarbonStore on CarbonStoreBase, Store {
     });
   }
 
-  late final _$estcResultAtom = Atom(
-    name: 'CarbonStoreBase.estcResult',
-    context: context,
-  );
+  late final _$resultKgM2Atom =
+      Atom(name: 'CarbonStoreBase.resultKgM2', context: context);
 
   @override
-  double? get estcResult {
-    _$estcResultAtom.reportRead();
-    return super.estcResult;
+  double? get resultKgM2 {
+    _$resultKgM2Atom.reportRead();
+    return super.resultKgM2;
   }
 
   @override
-  set estcResult(double? value) {
-    _$estcResultAtom.reportWrite(value, super.estcResult, () {
-      super.estcResult = value;
+  set resultKgM2(double? value) {
+    _$resultKgM2Atom.reportWrite(value, super.resultKgM2, () {
+      super.resultKgM2 = value;
     });
   }
 
-  late final _$CarbonStoreBaseActionController = ActionController(
-    name: 'CarbonStoreBase',
-    context: context,
-  );
+  late final _$CarbonStoreBaseActionController =
+      ActionController(name: 'CarbonStoreBase', context: context);
 
   @override
   void calculateEstc() {
     final _$actionInfo = _$CarbonStoreBaseActionController.startAction(
-      name: 'CarbonStoreBase.calculateEstc',
-    );
+        name: 'CarbonStoreBase.calculateEstc');
     try {
       return super.calculateEstc();
+    } finally {
+      _$CarbonStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clear() {
+    final _$actionInfo = _$CarbonStoreBaseActionController.startAction(
+        name: 'CarbonStoreBase.clear');
+    try {
+      return super.clear();
     } finally {
       _$CarbonStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -112,7 +112,7 @@ mixin _$CarbonStore on CarbonStoreBase, Store {
 coInput: ${coInput},
 dsInput: ${dsInput},
 eInput: ${eInput},
-estcResult: ${estcResult},
+resultKgM2: ${resultKgM2},
 canCalculate: ${canCalculate}
     ''';
   }
