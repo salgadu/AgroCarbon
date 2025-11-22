@@ -93,7 +93,7 @@ cd calculadora_agrocarbon
 flutter pub get
 ```
 
-### Gerar arquivos do MobX (se aplicável)
+### Gerar arquivos do MobX
 
 Como o projeto utiliza `mobx_codegen`, é necessário gerar os arquivos `.g.dart` com `build_runner`:
 
@@ -113,7 +113,7 @@ Ou abra o projeto na sua IDE (Android Studio / VS Code) e execute pelo gerenciad
 
 ---
 
-## 📦 Dependências e Ferramentas (principais)
+## 📦 Dependências e Ferramentas
 
 Este projeto foi desenvolvido com foco em escalabilidade e manutenção. Abaixo estão as dependências e ferramentas mencionadas:
 
@@ -143,7 +143,7 @@ Este projeto foi desenvolvido com foco em escalabilidade e manutenção. Abaixo 
 
 ---
 
-## 🗂️ Estrutura do Projeto (resumo)
+## 🗂️ Estrutura do Projeto
 
 ```
 lib/
