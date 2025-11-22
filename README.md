@@ -1,5 +1,7 @@
 # 🌱 Calculadora AgroCarbon
 
+![Logo](assets/icons/agrocarbon_banner.png)
+
 A **Calculadora AgroCarbon** é uma ferramenta open-source desenvolvida em Flutter para quantificar o **Estoque de Carbono no Solo (ESTC)** em áreas agrícolas. O aplicativo converte dados laboratoriais e de campo em informações estratégicas de forma simples, rápida e padronizada — auxiliando produtores, consultores, pesquisadores e agentes do mercado de carbono.
 
 ---
@@ -14,9 +16,6 @@ A **Calculadora AgroCarbon** é uma ferramenta open-source desenvolvida em Flutt
 6. [Estrutura do Projeto](#estrutura-do-projeto)
 7. [Screenshots](#screenshots)
 8. [Equipe / Grupo AGROcarbon](#equipe--grupo-agrocarbon)
-9. [Contribuição](#contribuição)
-10. [Licença](#licença)
-11. [Anexos e Documentos](#anexos-e-documentos)
 
 ---
 
@@ -57,15 +56,11 @@ V = π × R² × h
 Ds = Ms / V
 ```
 
-(Ms = massa seca da amostra; V = volume da amostra calculado pela geometria apropriada)
-
 ### 3. Estoque de Carbono no Solo (ESTC)
 
 ```
 ESTC = COT × Ds × e / 10
 ```
-
-(onde `e` é a espessura da camada analisada; o divisor 10 ajusta unidades para kg/m² conforme a metodologia adotada)
 
 ---
 
@@ -73,9 +68,9 @@ ESTC = COT × Ds × e / 10
 
 ### Pré-requisitos
 
-* Flutter SDK (versão estável recomendada). Guia de instalação: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
-* IDE: Android Studio, Visual Studio Code ou IntelliJ IDEA
-* SDKs de plataforma (Android/iOS) configurados conforme documentação do Flutter
+* Flutter SDK (versão estável recomendada)
+* IDE (Android Studio, VS Code, IntelliJ)
+* SDKs de plataforma configurados
 
 ### Clonar o repositório
 
@@ -84,23 +79,17 @@ git clone https://github.com/seu-usuario/calculadora-agrocarbon.git
 cd calculadora_agrocarbon
 ```
 
-> Substitua `seu-usuario` e `calculadora-agrocarbon` pelo path real do repositório.
-
 ### Instalar dependências
 
 ```bash
 flutter pub get
 ```
 
-### Gerar arquivos do MobX (se aplicável)
-
-Como o projeto utiliza `mobx_codegen`, é necessário gerar os arquivos `.g.dart` com `build_runner`:
+### Gerar arquivos do MobX
 
 ```bash
 dart run build_runner build --delete-conflicting-outputs
 ```
-
-> Se preferir observar arquivos sendo gerados continuamente durante o desenvolvimento, use `watch` em vez de `build`.
 
 ### Executar o aplicativo
 
@@ -108,41 +97,19 @@ dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
-Ou abra o projeto na sua IDE (Android Studio / VS Code) e execute pelo gerenciador de dispositivos/debug.
-
 ---
 
 ## 📦 Dependências e Ferramentas (principais)
 
-Este projeto foi desenvolvido com foco em escalabilidade e manutenção. Abaixo estão as dependências e ferramentas mencionadas:
-
-### Gerenciamento de Estado
-
-* `mobx` e `mobx_codegen` (geração de stores com codegen)
-* `build_runner` (geração dos arquivos .g.dart)
-
-### Arquitetura e Injeção de Dependência
-
-* `flutter_modular`
-
-### Armazenamento Local
-
-* `shared_preferences`
-
-### UI & Animações
-
-* `animations` (flutter/animations)
-* `font_awesome_flutter`
-* `google_fonts` (Fonte: *Outfit*)
-
-### Ferramentas auxiliares
-
-* `flutter_native_splash` (tela de splash nativa)
-* `flutter_launcher_icons` (geração de ícones)
+* **MobX**, **mobx_codegen**, **build_runner**
+* **flutter_modular**
+* **shared_preferences**
+* **animations**, **font_awesome_flutter**, **google_fonts**
+* **flutter_native_splash**, **flutter_launcher_icons**
 
 ---
 
-## 🗂️ Estrutura do Projeto (resumo)
+## 🗂️ Estrutura do Projeto
 
 ```
 lib/
@@ -160,18 +127,19 @@ lib/
 │   └── app_widget.dart
 └── main.dart
 ```
+
 ---
 
 ## 📸 Screenshots
 
-Abaixo, uma visualização organizada das principais telas do aplicativo:
-
-| Tela                             | Screenshot                                            |
-| -------------------------------- | ----------------------------------------------------- |
-| **Estoque de Carbono**           | ![Carbon](assets/screenshots/screenshot_carbon.jpg)   |
-| **Matéria Orgânica (MOS)**       | ![MOS](assets/screenshots/screenshot_mos_result.jpg)  |
-| **Densidade do Solo**            | ![Density](assets/screenshots/screenshot_density.jpg) |
-| **Carbono Orgânico Total (COT)** | ![COT](assets/screenshots/screenshot_cot.jpg)         |
+<table>
+  <tr>
+    <td><img src="assets/screenshots/screenshot_carbon.jpg" width="180"></td>
+    <td><img src="assets/screenshots/screenshot_mos_result.jpg" width="180"></td>
+    <td><img src="assets/screenshots/screenshot_density.jpg" width="180"></td>
+    <td><img src="assets/screenshots/screenshot_cot.jpg" width="180"></td>
+  </tr>
+</table>
 
 ---
 
@@ -179,18 +147,18 @@ Abaixo, uma visualização organizada das principais telas do aplicativo:
 
 **Coordenador:**
 
-* Prof. Dr. Gustavo André de Araújo Santos — Universidade Federal do Maranhão (Chapadinha/MA)
+* Prof. Dr. Gustavo André de Araújo Santos — UFMA (Chapadinha/MA)
 
 **Grupo AGROcarbon** — Laboratório Inteligente de Pesquisas destinadas a Mudanças Climáticas e Agricultura
 
 **Compromissos do grupo:**
 
-* Pesquisa científica de alto nível
-* Desenvolvimento de soluções práticas para o campo
-* Apoio a práticas agrícolas regenerativas
-* Formação e capacitação de profissionais
-* Valorização da diversidade e inclusão
+* Pesquisa científica aplicada
+* Soluções práticas para o campo
+* Agricultura regenerativa
+* Capacitação técnica
+* Inclusão e diversidade
 
 ---
 
-Desenvolvido com 💚 por Rodrigo Salgado — para um futuro mais sustentável.
+Desenvolvido por **Rodrigo Salgado** — para um futuro mais sustentável.
