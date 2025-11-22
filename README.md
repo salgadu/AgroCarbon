@@ -82,7 +82,7 @@ ESTC = COT × Ds × e / 10
 
 ```bash
 git clone https://github.com/salgadu/AgroCarbon.git
-cd calculadora_agrocarbon
+cd AgroCarbon
 ```
 
 ### Instalar dependências
