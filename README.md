@@ -81,11 +81,9 @@ ESTC = COT × Ds × e / 10
 ### Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/calculadora-agrocarbon.git
+git clone https://github.com/salgadu/AgroCarbon.git
 cd calculadora_agrocarbon
 ```
-
-> Substitua `seu-usuario` e `calculadora-agrocarbon` pelo path real do repositório.
 
 ### Instalar dependências
 
