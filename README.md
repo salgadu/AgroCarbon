@@ -32,34 +32,39 @@ A Calculadora AgroCarbon foi desenvolvida para executar os principais cálculos 
 
 **Funcionalidades principais:**
 
-- Inserção de dados laboratoriais e de campo (massa seca, volume da amostra, espessura da camada, MOS etc.).
-- Cálculo automático de: MOS, COT, Densidade do Solo (Ds) e ESTC (kg/m²).
-- Interface simples e objetiva para uso em campo e em relatórios técnicos.
-- Exportação/Registro básico de resultados (dependendo da implementação atual).
+* Inserção de dados laboratoriais e de campo (massa seca, volume da amostra, espessura da camada, MOS etc.).
+* Cálculo automático de: MOS, COT, Densidade do Solo (Ds) e ESTC (kg/m²).
+* Interface simples e objetiva para uso em campo e em relatórios técnicos.
+* Exportação/Registro básico de resultados (dependendo da implementação atual).
 
-> **Frase-chave:** \"Valorizar a terra, tornando o estoque de carbono um ativo comercial.\"
+> **Frase-chave:** "Valorizar a terra, tornando o estoque de carbono um ativo comercial."
 
 ---
 
 ## 🧮 Fórmulas e Metodologia
 
 ### 1. Matéria Orgânica do Solo (MOS)
+
 ```
 MOS = COT × 1,724
 COT = MOS × 0,58
 ```
 
 ### 2. Densidade do Solo (Ds)
+
 ```
 V = π × R² × h
 Ds = Ms / V
 ```
+
 (Ms = massa seca da amostra; V = volume da amostra calculado pela geometria apropriada)
 
 ### 3. Estoque de Carbono no Solo (ESTC)
+
 ```
 ESTC = COT × Ds × e / 10
 ```
+
 (onde `e` é a espessura da camada analisada; o divisor 10 ajusta unidades para kg/m² conforme a metodologia adotada)
 
 ---
@@ -67,11 +72,13 @@ ESTC = COT × Ds × e / 10
 ## 💻 Instalação e Execução (Passo a passo)
 
 ### Pré-requisitos
-- Flutter SDK (versão estável recomendada). Guia de instalação: https://docs.flutter.dev/get-started/install
-- IDE: Android Studio, Visual Studio Code ou IntelliJ IDEA
-- SDKs de plataforma (Android/iOS) configurados conforme documentação do Flutter
+
+* Flutter SDK (versão estável recomendada). Guia de instalação: [https://docs.flutter.dev/get-started/install](https://docs.flutter.dev/get-started/install)
+* IDE: Android Studio, Visual Studio Code ou IntelliJ IDEA
+* SDKs de plataforma (Android/iOS) configurados conforme documentação do Flutter
 
 ### Clonar o repositório
+
 ```bash
 git clone https://github.com/seu-usuario/calculadora-agrocarbon.git
 cd calculadora_agrocarbon
@@ -80,11 +87,13 @@ cd calculadora_agrocarbon
 > Substitua `seu-usuario` e `calculadora-agrocarbon` pelo path real do repositório.
 
 ### Instalar dependências
+
 ```bash
 flutter pub get
 ```
 
 ### Gerar arquivos do MobX (se aplicável)
+
 Como o projeto utiliza `mobx_codegen`, é necessário gerar os arquivos `.g.dart` com `build_runner`:
 
 ```bash
@@ -94,6 +103,7 @@ dart run build_runner build --delete-conflicting-outputs
 > Se preferir observar arquivos sendo gerados continuamente durante o desenvolvimento, use `watch` em vez de `build`.
 
 ### Executar o aplicativo
+
 ```bash
 flutter run
 ```
@@ -107,25 +117,28 @@ Ou abra o projeto na sua IDE (Android Studio / VS Code) e execute pelo gerenciad
 Este projeto foi desenvolvido com foco em escalabilidade e manutenção. Abaixo estão as dependências e ferramentas mencionadas:
 
 ### Gerenciamento de Estado
-- `mobx` e `mobx_codegen` (geração de stores com codegen)
-- `build_runner` (geração dos arquivos .g.dart)
+
+* `mobx` e `mobx_codegen` (geração de stores com codegen)
+* `build_runner` (geração dos arquivos .g.dart)
 
 ### Arquitetura e Injeção de Dependência
-- `flutter_modular`
+
+* `flutter_modular`
 
 ### Armazenamento Local
-- `shared_preferences`
+
+* `shared_preferences`
 
 ### UI & Animações
-- `animations` (flutter/animations)
-- `font_awesome_flutter`
-- `google_fonts` (Fonte: *Outfit*)
+
+* `animations` (flutter/animations)
+* `font_awesome_flutter`
+* `google_fonts` (Fonte: *Outfit*)
 
 ### Ferramentas auxiliares
-- `flutter_native_splash` (tela de splash nativa)
-- `flutter_launcher_icons` (geração de ícones)
 
-> Observação: a lista acima foi extraída do README e do seu input. Para confirmar todas as versões e dependências exatas, o arquivo `pubspec.yaml` do projeto está disponível em `/mnt/data/pubspec.yaml`.
+* `flutter_native_splash` (tela de splash nativa)
+* `flutter_launcher_icons` (geração de ícones)
 
 ---
 
@@ -151,29 +164,33 @@ lib/
 
 ## 📸 Screenshots
 
-Visualização das principais telas (imagens armazenadas em `assets/screenshots/`):
+Abaixo, uma visualização organizada das principais telas do aplicativo:
 
-- `assets/screenshots/screenshot_carbon.jpg` — Tela principal de Estoque de Carbono
-- `assets/screenshots/screenshot_mos_result.jpg` — Resultados de Matéria Orgânica
-- `assets/screenshots/screenshot_density.jpg` — Cálculo/Densidade do Solo
-- `assets/screenshots/screenshot_cot.jpg` — Resultados de Carbono Orgânico Total (COT)
+| Tela                             | Screenshot                                            |
+| -------------------------------- | ----------------------------------------------------- |
+| **Estoque de Carbono**           | ![Carbon](assets/screenshots/screenshot_carbon.jpg)   |
+| **Matéria Orgânica (MOS)**       | ![MOS](assets/screenshots/screenshot_mos_result.jpg)  |
+| **Densidade do Solo**            | ![Density](assets/screenshots/screenshot_density.jpg) |
+| **Carbono Orgânico Total (COT)** | ![COT](assets/screenshots/screenshot_cot.jpg)         |
 
 ---
 
 ## 👥 Equipe: Grupo AGROcarbon
 
 **Coordenador:**
-- Prof. Dr. Gustavo André de Araújo Santos — Universidade Federal do Maranhão (Chapadinha/MA)
+
+* Prof. Dr. Gustavo André de Araújo Santos — Universidade Federal do Maranhão (Chapadinha/MA)
 
 **Grupo AGROcarbon** — Laboratório Inteligente de Pesquisas destinadas a Mudanças Climáticas e Agricultura
 
 **Compromissos do grupo:**
-- Pesquisa científica de alto nível
-- Desenvolvimento de soluções práticas para o campo
-- Apoio a práticas agrícolas regenerativas
-- Formação e capacitação de profissionais
-- Valorização da diversidade e inclusão
+
+* Pesquisa científica de alto nível
+* Desenvolvimento de soluções práticas para o campo
+* Apoio a práticas agrícolas regenerativas
+* Formação e capacitação de profissionais
+* Valorização da diversidade e inclusão
 
 ---
 
-Desenvolvido por Rodrigo Salgado — para um futuro mais sustentável.
+Desenvolvido com 💚 por Rodrigo Salgado — para um futuro mais sustentável.
