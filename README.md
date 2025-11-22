@@ -1,6 +1,8 @@
 # 🌱 Calculadora AgroCarbon
 
-![Logo](assets/icons/agrocarbon_banner.png)
+<p align="center">
+  <img src="assets/icons/agrocarbon_banner.png" width="260">
+</p>
 
 A **Calculadora AgroCarbon** é uma ferramenta open-source desenvolvida em Flutter para quantificar o **Estoque de Carbono no Solo (ESTC)** em áreas agrícolas. O aplicativo converte dados laboratoriais e de campo em informações estratégicas de forma simples, rápida e padronizada — auxiliando produtores, consultores, pesquisadores e agentes do mercado de carbono.
 
@@ -56,6 +58,8 @@ V = π × R² × h
 Ds = Ms / V
 ```
 
+(Ms = massa seca da amostra; V = volume da amostra calculado pela geometria apropriada)
+
 ### 3. Estoque de Carbono no Solo (ESTC)
 
 ```
@@ -69,8 +73,8 @@ ESTC = COT × Ds × e / 10
 ### Pré-requisitos
 
 * Flutter SDK (versão estável recomendada)
-* IDE (Android Studio, VS Code, IntelliJ)
-* SDKs de plataforma configurados
+* IDE: Android Studio, Visual Studio Code ou IntelliJ IDEA
+* SDKs de plataforma (Android/iOS)
 
 ### Clonar o repositório
 
@@ -101,11 +105,11 @@ flutter run
 
 ## 📦 Dependências e Ferramentas (principais)
 
-* **MobX**, **mobx_codegen**, **build_runner**
-* **flutter_modular**
-* **shared_preferences**
-* **animations**, **font_awesome_flutter**, **google_fonts**
-* **flutter_native_splash**, **flutter_launcher_icons**
+* mobx, mobx_codegen, build_runner
+* flutter_modular
+* shared_preferences
+* animations, font_awesome_flutter, google_fonts
+* flutter_native_splash, flutter_launcher_icons
 
 ---
 
@@ -134,10 +138,10 @@ lib/
 
 <table>
   <tr>
-    <td><img src="assets/screenshots/screenshot_carbon.jpg" width="180"></td>
-    <td><img src="assets/screenshots/screenshot_mos_result.jpg" width="180"></td>
-    <td><img src="assets/screenshots/screenshot_density.jpg" width="180"></td>
-    <td><img src="assets/screenshots/screenshot_cot.jpg" width="180"></td>
+    <td><img src="assets/screenshots/screenshot_carbon.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_mos_result.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_density.jpg" width="170"></td>
+    <td><img src="assets/screenshots/screenshot_cot.jpg" width="170"></td>
   </tr>
 </table>
 
@@ -147,15 +151,15 @@ lib/
 
 **Coordenador:**
 
-* Prof. Dr. Gustavo André de Araújo Santos — UFMA (Chapadinha/MA)
+* Prof. Dr. Gustavo André de Araújo Santos — Universidade Federal do Maranhão (Chapadinha/MA)
 
-**Grupo AGROcarbon** — Laboratório Inteligente de Pesquisas destinadas a Mudanças Climáticas e Agricultura
+**Grupo AGROcarbon — Laboratório Inteligente de Pesquisas destinadas a Mudanças Climáticas e Agricultura**
 
 **Compromissos do grupo:**
 
-* Pesquisa científica aplicada
-* Soluções práticas para o campo
-* Agricultura regenerativa
+* Pesquisa científica de alto nível
+* Desenvolvimento de soluções práticas
+* Apoio à agricultura regenerativa
 * Capacitação técnica
 * Inclusão e diversidade
 
